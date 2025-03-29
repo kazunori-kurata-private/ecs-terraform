@@ -62,7 +62,7 @@ resource "aws_ecs_service" "imported" {
   platform_version                   = "LATEST"
   propagate_tags                     = "NONE"
   scheduling_strategy                = "REPLICA"
-  task_definition                    = "fargate-test:9"
+  task_definition                    = "fargate-test:10"
   capacity_provider_strategy {
     base              = 0
     capacity_provider = "FARGATE"
