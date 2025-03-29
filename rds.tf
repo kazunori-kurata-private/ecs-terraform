@@ -1,6 +1,9 @@
 resource "aws_db_subnet_group" "default" {
-  name       = "main"
-  subnet_ids = [aws_subnet.public_subnet_1a.id, aws_subnet.public_subnet_1c.id]
+  name = "main"
+  subnet_ids = [
+    aws_subnet.private_subnet_1a.id,
+    aws_subnet.private_subnet_1c.id
+  ]
 
   tags = {
     Name = "My DB subnet group"
@@ -9,7 +12,7 @@ resource "aws_db_subnet_group" "default" {
 
 resource "aws_db_instance" "default" {
   allocated_storage                     = 20
-  allow_major_version_upgrade           = true
+  allow_major_version_upgrade           = false
   apply_immediately                     = true
   auto_minor_version_upgrade            = false
   availability_zone                     = "ap-northeast-1c"
