@@ -36,14 +36,14 @@
 
 1. **変数ファイル（`terraform.tfvars`）の作成**
 
-   - プロジェクトルートディレクトリに`terraform.tfvars`ファイルを作成し、必要な変数の値を設定します。例:
+   - プロジェクトルートディレクトリに`terraform.tfvars`ファイルを作成し、必要な変数の値を設定する。例:
 
      ```hcl
      db_password = "<DBユーザーのパスワード>"
      domain      = "<ドメイン名>"
      ```
 
-6. **Terraformの初期化と実行**
+1. **Terraformの初期化**
 
    - プロジェクトディレクトリにおいて、以下のコマンドを実行してTerraformを初期化する。
 
@@ -51,17 +51,48 @@
      AWS_PROFILE=terraform-exec terraform init
      ```
 
-   - 次に、以下のコマンドで計画を確認します。
+1. **ECR関連のみ適用**
+
+   - `ecr.tf`/`iam.tf`/`provider.tf`/`variables.tf`以外のtfファイルをコメントアウトする。
+
+   - 以下のコマンドでplanを確認する。
 
      ```bash
      AWS_PROFILE=terraform-exec terraform plan
      ```
 
-   - 最後に、以下のコマンドでインフラを適用します。
+   - 以下のコマンドでリソースを適用する。
 
      ```bash
      AWS_PROFILE=terraform-exec terraform apply
      ```
+
+1. **Laravel image の Push**
+
+   - [本リポジトリ](https://github.com/uchidayuma/udemy-laravel8-mysql-simple-memo)の.envファイルに`DB_PASSWORD`を定義して、imageをbuild及びpush（詳細手順は省略）
+
+1. **他リソースを適用**
+
+   - コメントアウトしたtfファイルを元に戻す。
+
+   - 以下のコマンドでplanを確認する。
+
+     ```bash
+     AWS_PROFILE=terraform-exec terraform plan
+     ```
+
+   - 以下のコマンドでリソースを適用する。
+
+     ```bash
+     AWS_PROFILE=terraform-exec terraform apply
+     ```
+
+1. **以下リンクへ飛ぶ**
+
+   - <https://memotest.click>
+
+   - ユーザー登録後、以下画面になればよい
+![alt text](./docs/ログイン後画面.png)
 
 ## 学習教材
 
@@ -71,4 +102,4 @@
 
 ## 構成図
 
-TODO：後で追加
+[構成図](./docs/ecs.png)
